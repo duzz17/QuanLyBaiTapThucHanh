@@ -238,28 +238,3 @@ function flatten(array) {
   }, []);
 }
 console.log(flatten(matrix));
-// ++++++++++++++++++ 3. Xử Lý Bất Đồng Bộ: Callback, Promise, Async/Await    +++++++++
-// // Bài 3.1. Callback cơ bản với setTimeout     [Cơ bản]
-/*
-Bài 3.1. Callback cơ bản với setTimeout     [Cơ bản]  
-Viết một hàm `sayHelloLater(callback)` dùng setTimeout 2 giây sau đó gọi callback() in ra "Hello sau 2 giây".
-*/
-function sayHelloLater(callback) {
-  setTimeout(() => {
-    console.log("Hello sau 2s");
-  }, 2000);
-}
-sayHelloLater();
-// // Bài 3.2. Chuyển callback sang Promise     [Trung bình]
-/*
-Bài 3.2. Chuyển callback sang Promise     [Trung bình]  
-Chuyển hàm sau từ callback sang Promise:
-Viết lại thành `getUserPromise(id)` trả về Promise, sử dụng .then() và .catch() để gọi thử.
-function getUser(id, callback) {
-  setTimeout(() => {
-    if (id > 0) callback(null, { id, name: "User " + id });
-    else callback("ID không hợp lệ");
-  }, 1000);
-}
-
-*/
