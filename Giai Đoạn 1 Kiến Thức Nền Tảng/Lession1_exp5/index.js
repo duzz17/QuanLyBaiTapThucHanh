@@ -3,12 +3,12 @@
 // Cho chuỗi có khoảng trắng thừa. Dùng trim() để loại bỏ khoảng trắng thừa, sau đó in độ dài chuỗi sau khi trim.
 const raw = "   Nguyễn Văn A   ";
 const afterTrim = raw.trim();
-console.log(afterTrim);
+// console.log(afterTrim);
 // Bài 5.2. split()     [Cơ bản]
 // Dùng split() để tách thành mảng các từ theo dấu phẩy.
 const sentence = "JavaScript,HTML,CSS,ReactJS";
 const afterSplit = sentence.split(",");
-console.log(afterSplit);
+// console.log(afterSplit);
 // Bài 5.3. includes()     [Cơ bản]
 // Dùng includes() để kiểm tra chuỗi có chứa ký tự "@" hay không (kiểm tra định dạng email cơ bản).
 const email = "student@school.edu.vn";
@@ -19,15 +19,15 @@ console.log(isEmail);
 const phone = "0987654321";
 const ThirdFirst = phone.slice(0, 3);
 const ThirdLast = phone.slice(phone.length - 3, phone.length);
-console.log(ThirdFirst);
-console.log(ThirdLast);
+// console.log(ThirdFirst);
+// console.log(ThirdLast);
 // Bài 5.5. replace() và replaceAll()     [Trung bình]
 // Dùng replace() để thay từ "JavaScript" đầu tiên thành "ReactJS". Sau đó thử thay tất cả các từ "JavaScript".
 const text = "Tôi yêu JavaScript, JavaScript rất thú vị";
 const replaceFirst = text.replace("JavaScript", "ReactJS");
-console.log(replaceFirst);
+// console.log(replaceFirst);
 const replaceAll = text.replaceAll("JavaScript", "ReactJS");
-console.log(replaceAll);
+// console.log(replaceAll);
 // Bài 5.6. toLowerCase() / toUpperCase()     [Trung bình]
 // Viết hàm capitalize(str) dùng toLowerCase() và toUpperCase() để chuyển chuỗi bất kỳ thành dạng: chữ cái đầu viết hoa, còn lại viết thường. Ví dụ: "hÀ NỘI" → "Hà nội".
 const text4 = "    nguyễn XuÂn đức học     lớp tin hà nội  .đang Làm bài tập";
@@ -49,8 +49,38 @@ function formatSentence(str) {
   return result;
 }
 
-console.log(formatSentence(text4));
+// console.log(formatSentence(text4));
 // Bài 5.7. Template String tạo HTML     [Nâng cao]
 // Sử dụng Template String để viết hàm renderStudentCard({name, score, major}) trả về một đoạn chuỗi HTML.
 // 💡 Gợi ý: Dùng dấu backtick (`) và cú pháp ${} để chèn biến trực tiếp vào chuỗi, ví dụ: `<div>Sinh viên: ${name} - Ngành: ${major} - Điểm: ${score}</div>`
-function renderStudentCard({ name, score, major }) {}
+function renderStudentCard({ name, score, major }) {
+  return `
+    <div>
+      <h2>${name}</h2>
+      <p>Ngành: ${major}</p>
+      <p>Điểm: ${score}</p>
+    </div>
+  `;
+}
+const student = {
+  name: "Nguyen xuan duc",
+  major: "CNTT",
+  score: 10,
+};
+console.log(renderStudentCard(student));
+// Bài 5.8. Slugify chuỗi     [Nâng cao]
+// Viết hàm slugify(title) chuyển tiêu đề bài viết thành dạng URL-slug, kết hợp trim(), toLowerCase(), split(), replace(). Ví dụ: "Học Lập Trình JavaScript!" → "hoc-lap-trinh-javascript".
+const text2 = "Học Lập Trình JavaScript!";
+function slugify(title) {
+  return title
+    .trim() // Bỏ khoảng trắng đầu/cuối
+    .toLowerCase() // Chuyển thành chữ thường
+    .normalize("NFD") // Tách dấu tiếng Việt
+    .replace(/[\u0300-\u036f]/g, "") // Xóa dấu
+    .replace(/đ/g, "d") // đ -> d
+    .replace(/[^a-z0-9\s]/g, "") // Xóa ký tự đặc biệt
+    .split(" ") // Tách thành mảng
+    .filter((word) => word !== "") // Bỏ phần tử rỗng
+    .join("-"); // Nối bằng dấu -
+}
+console.log(slugify(text2));
